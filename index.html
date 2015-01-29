@@ -1,0 +1,38 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>Simple Regression</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="http://revolutionanalytics.com/sites/all/themes/rva_theme/img/favicon.ico">
+    <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/styles/main.css">
+</head>
+
+<body ng-app="simpleRegressionApp">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container">
+        <div class="header">
+            <h3 class="text-muted">Simple Regression</h3>
+        </div>
+
+        <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+
+        <div class="footer">
+            <p><span class="glyphicon glyphicon-heart"></span> from the DeployR team</p>
+        </div>
+    </div>
+
+    <script src="assets/bower_components/angular/angular.js"></script>
+    <script src="assets/scripts/deployr.js"></script>
+    <script src="assets/scripts/app.js"></script>
+    <script src="assets/scripts/controllers/main.js"></script>
+</body>
+
+</html>

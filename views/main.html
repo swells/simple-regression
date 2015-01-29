@@ -1,0 +1,38 @@
+<div class="well">
+    <div class="row results" ng-hide="cleanup">
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label>Y-axis variable:</label>
+                    <select class="form-control" ng-model="axis.y">
+                        <option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>X-axis variable:</label>
+                    <select class="form-control" ng-model="axis.x">
+                        <option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+                    </select>
+                </div>
+            </form>
+            <p>
+                <a class="btn btn-default" ng-click="close()" title="close project and destroy session.">Close Project</a>
+            </p>
+        </div>
+        <div class="col-md-8">
+            <img ng-src="{{ url }}" height="300" width="400">
+        </div>
+    </div>
+    <div class="row" ng-show="cleanup">
+        <p>
+            <h2 class="text-muted text-center">Project Closed. <small>Please refresh browser to start over.</small></h2>
+        </p>
+    </div>
+</div>
+
+<div class="row marketing">
+    <h4>Description</h4>
+    <p>
+        This sample runs a simple regression and displays a plot on the screen. It uses the mtcars dataset and allows the user to choose the Y and X variables for the regression.
+    </p>
+</div>

@@ -9,7 +9,8 @@
  */
 angular.module('simpleRegressionApp')
     .controller('MainCtrl', function($scope) {    	
-        var pid; // project-id
+        var pid, // project-id
+            create = true; // first create a project
 
         $scope.url = '';
         $scope.items = [];        
@@ -49,23 +50,19 @@ angular.module('simpleRegressionApp')
         // 4. Execute 'DeployR - ReadCSV.R' to populate the select lists
         // 5. Wait for the regression button to be clicked
         //
-        deployr.configure({ host: 'http://localhost:7300', cors: true })
+        deployr.configure({ host: 'http://localhost:7300', cors: true })        
             .auth('testuser', 'changeme')
-            .io('/r/project/create')
-            .end(function(res) {
-            	pid = res.get('project').project;
-                return { project: pid };
-            })
-            .io('/r/project/execute/script')
-            .data({ author: 'testuser', directory: 'root', filename: 'DeployR - ReadCSV.R'})
-            .routput('output_vars')
-            .end(function(res) {
-            	$scope.$apply(function() {
-            		$scope.items = res.workspace('output_vars').value;
-            		$scope.axis = {
-            			x: $scope.items[0],
-            			y: $scope.items[1]
-            		};
-            	});
-            });
-    });
+            .script('/testuser/root/DeployR - ReadCSV.R', create)
+               .routput('output_vars')
+               .end(function(res) {
+                  pid = res.get('project').project; // save project-id
+
+                  $scope.$apply(function() {
+                     $scope.items = res.workspace('output_vars').value;
+                     $scope.axis = {
+                        x: $scope.items[0],
+                        y: $scope.items[1]
+                     };
+                  });
+              });
+           });

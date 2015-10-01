@@ -4,6 +4,36 @@ This sample runs a simple regression and displays a plot on the screen. It uses
 the mtcars dataset and allows the user to choose the Y and X variables for the 
 regression.
 
+```R
+# in case the ReadCSV.R script was not run, define the default dataset here 
+if (!exists('datasets')) {
+    require(datasets)
+    dataset <-  mtcars
+    attach(dataset)
+}
+#get input data and labels - default data from readCSV.R is the cars dataset, 
+#so here, use two variables from cars
+require(deployrUtils)
+deployrInput('{"name":"input_y","default":"mpg","render":"character","label":"Specify Y"}')
+deployrInput('{"name":"input_x","default":"cyl","render":"character","label":"Specify X"}')
+y<-get(paste(input_y))
+ylabel<-paste(input_y)
+x<-get(paste(input_x))
+xlabel<-paste(input_x)
+
+#run Regression
+lreg<-lm(y~x)
+
+#create title with the equation
+title<-paste(ylabel, "=", paste(lreg$coeff[1]), "+", paste(lreg$coeff[2]), "*", xlabel)
+
+#plot the points and the regression line
+#notice that we don't have to write this plot to a file, a plot file will automatically
+#be generated for us if none is specified.
+plot(x,y, main=title, col.main="#ff6633", xlab=xlabel, ylab=ylabel, pch=19, col="#0099cc", bg="transparent")
+abline(lreg, col="#ff6633")
+```
+
 ## Quick Start
 
 1. Clone the repository:

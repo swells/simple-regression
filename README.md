@@ -12,7 +12,8 @@ regression.
    $ git clone https://github.com/swells/simple-regression.git
    ```
 2. Set the DeployR server endpoint location if not running at localhost in the 
-`./assets/scripts/controllers/main.js` file. [See here](#configuration).
+`./assets/scripts/controllers/main.js` file. 
+[See here](#configuration).
 
 3. Copy the `simple-regression/` directory over to your webserver.
 
